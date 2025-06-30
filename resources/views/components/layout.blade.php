@@ -13,13 +13,23 @@
     <header>
         <nav>
             <h1><a href="{{ route("home") }}">Task Manager</a></h1>
-            <a href="{{ route('tasks.create') }}">Create new task</a> |
-            <a href="{{ route('show.login') }}" class="btn">Login</a> 
-            <a href="{{ route('show.register') }}" class="btn">Register</a>
-            <form action="{{ route("logout") }}" method="post" class="m-0">
-                @csrf
-                <button type="submit" class="btn">Logout</button>
-            </form>
+
+            @auth
+                <a href="{{ route('tasks.create') }}">Create new task</a> |
+            @endauth
+
+            @guest
+                <a href="{{ route('show.login') }}" class="btn">Login</a> 
+                <a href="{{ route('show.register') }}" class="btn">Register</a>
+            @endguest
+
+            @auth
+                <h4>Hello, <strong>{{ Auth::user()->name }}</strong></h4>
+                <form action="{{ route("logout") }}" method="post" class="m-0">
+                    @csrf
+                    <button type="submit" class="btn">Logout</button>
+                </form>
+            @endauth
         </nav>
     </header>
 

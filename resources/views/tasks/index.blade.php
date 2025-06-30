@@ -1,6 +1,5 @@
 <x-layout>
-    <h2>Hello, {{ $user->name }}</h2>
-    <p>Here are all your tasks</p>
+    <h2>Here are all your tasks</h2>
 
     <ul>
         @foreach ($tasks as $task)

@@ -15,11 +15,6 @@ class TaskController extends Controller
     public function index()
     {
         $user = Auth::user();
-
-        if (!$user) {
-            return redirect()->route('show.login');
-        }
-
         $tasks = $user->tasks;
 
         return view("tasks.index", compact("user", "tasks"));
