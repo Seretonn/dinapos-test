@@ -2,18 +2,30 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+// Home page
 Route::get('/', function () {
     return view('home');
-});
+})->name("home");
 
+// User Controller
+Route::resource("users", UserController::class);
+
+// Task Controller
 Route::resource("tasks", TaskController::class);
 
-Route::get("/register", [AuthController::class, "showRegister"])->name("show.register");
+// Login
 Route::get("/login", [AuthController::class, "showLogin"])->name("show.login");
-Route::post("/register", [AuthController::class, "register"])->name("register");
 Route::post("/login", [AuthController::class, "login"])->name("login");
+
+// Register
+Route::get("/register", [AuthController::class, "showRegister"])->name("show.register");
+Route::post("/register", [AuthController::class, "register"])->name("register");
+
+// Logout
+Route::post("/logout", [AuthController::class, "logout"])->name("logout");
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
