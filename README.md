@@ -84,3 +84,45 @@ La aplicación incluye un seeder que crea:
 ## Patrones Aplicados
 
 * **Modelo-Vista-Controlador (MVC):** Patron por defecto de Laravel.
+
+## Capturas
+
+### Home
+
+![alt](./resources/capturas/1.jpg)
+
+### Login
+
+![alt](./resources/capturas/2.jpg)
+
+### Register
+
+![alt](./resources/capturas/3.jpg)
+
+### Tasks List
+
+![alt](./resources/capturas/4.jpg)
+
+### Create New Task
+
+![alt](./resources/capturas/5.jpg)
+
+### Editing Task
+
+![alt](./resources/capturas/6.jpg)
+
+### User List (Admin)
+
+![alt](./resources/capturas/7.jpg)
+
+### Editing User
+
+![alt](./resources/capturas/8.jpg)
+
+### Create New User
+
+![alt](./resources/capturas/9.jpg)
+
+### Immutable by Meshuggah
+
+![alt](./resources/capturas/Meshuggah_Immutable.jpg)
