@@ -23,5 +23,5 @@
         </div>
     </form>
 
-    <x-validation-erros />
+    <x-validation-errors />
 </x-layout>

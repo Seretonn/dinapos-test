@@ -5,17 +5,10 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-// Home page (empty)
-Route::get('/', function () {
-    return view('home');
-})->name("home");
+// Home page
+Route::get('/', function () {return view('home');})->name("home");
 
-// User Controller
-Route::middleware("auth")->resource("users", UserController::class);
-
-// Task Controller
-Route::middleware("auth")->resource("tasks", TaskController::class);
-
+// Public routes
 Route::middleware("guest")->group(function () {
     // Login
     Route::get("/login", [AuthController::class, "showLogin"])->name("show.login");
@@ -24,6 +17,16 @@ Route::middleware("guest")->group(function () {
     // Register
     Route::get("/register", [AuthController::class, "showRegister"])->name("show.register");
     Route::post("/register", [AuthController::class, "register"])->name("register");
+});
+
+Route::middleware("auth")->group(function () {
+    // Admin.User controller
+    Route::name('admin.')->group(function () {
+        Route::resource('users', UserController::class);
+    });
+    
+    // Task Controller
+    Route::resource("tasks", TaskController::class);
 });
 
 // Logout

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,19 +20,13 @@ class AuthController extends Controller
         return view("auth.login");
     }
 
-    public function register (Request $request)
+    public function register (StoreUserRequest $request)
     {
-        $request->validate([
-            "name" => "required|string|max:255",
-            "email" => "required|email|unique:users",
-            "password" => "required|string|min:8|confirmed"
-        ]);
+        $validated = $request->validated();
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password)
-        ]);
+        $validated['password'] = Hash::make($validated['password']);
+
+        $user = User::create($validated);
 
         Auth::login($user);
 
@@ -47,7 +42,11 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
- 
+
+            if (Auth::user()->isAdmin()) {
+                return redirect()->route("admin.users.index");
+            }
+            
             return redirect()->route("tasks.index");
         }
  

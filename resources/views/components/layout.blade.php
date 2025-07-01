@@ -9,13 +9,20 @@
 
 <body>
     <x-success-msg />
+    <x-error-msg />
 
     <header>
         <nav>
             <h1><a href="{{ route("home") }}">Task Manager</a></h1>
 
             @auth
-                <a href="{{ route('tasks.create') }}">Create new task</a> |
+                @if (Auth::user()->isAdmin())
+                    <a href="{{ route('admin.users.index') }}">Users List</a>
+                    <a href="{{ route('admin.users.create') }}">Create new</a> |
+                @else
+                    <a href="{{ route('tasks.index') }}">Tasks List</a>
+                    <a href="{{ route('tasks.create') }}">Create new</a> |
+                @endif
             @endauth
 
             @guest

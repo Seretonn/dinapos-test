@@ -12,6 +12,6 @@
 
         <button type="submit" class="btn mt-4">Log in</button>
 
-        <x-validation-erros />
+        <x-validation-errors />
     </form>
 </x-layout>

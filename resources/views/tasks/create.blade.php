@@ -22,6 +22,6 @@
             <a href="{{ route('tasks.index') }}" class="cancel-btn mt-4">Cancel</a>    
         </div>
 
-        <x-validation-erros />
+        <x-validation-errors />
     </form>
 </x-layout>

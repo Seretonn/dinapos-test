@@ -4,6 +4,7 @@
         <li>
             <div class="card">
                 <h3>There are no tasks created yet</h3>
+                <a href="{{ route('tasks.create') }}" class="btn">Create new</a>
             </div>
         </li>
         @endif
