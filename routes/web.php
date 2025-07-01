@@ -5,7 +5,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-// Home page
+// Home page (empty)
 Route::get('/', function () {
     return view('home');
 })->name("home");

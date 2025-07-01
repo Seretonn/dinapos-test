@@ -1,16 +1,33 @@
 <x-layout>
-    <h2>Here are all your tasks</h2>
-
     <ul>
+        @if ($tasks->isEmpty())
+        <li>
+            <div class="card">
+                <h3>There are no tasks created yet</h3>
+            </div>
+        </li>
+        @endif
         @foreach ($tasks as $task)
             <li>
-                <x-card>
+                <div class="card">
                     <div>
                         <h3>{{ $task->title }}</h3>
-                        <p>{{ $task->description }}</p>
-                        <p>{{ $task->is_completed }}</p>
+                        @if ($task->is_completed)
+                            <p><span class="bg-green-50 text-green-500 font-bold">Done</span></p>
+                        @else
+                            <p><span class="bg-red-50 text-red-500 font-bold">Pending</span></p>
+                        @endif
+                        <p>{{ $task->description }}</p>    
                     </div>
-                </x-card>
+                    <div class="btn-container">
+                        <a href="{{ route('tasks.edit', $task) }}" class="edit-btn">Edit</a>
+                        <form action="{{ route('tasks.destroy', $task) }}" method="post" style="display: inline;">
+                            @csrf
+                            @method("DELETE")
+                            <button type="submit" class="delete-btn" onclick="return confirm('Are you sure you want to delete this task?')">Delete</button>
+                        </form>
+                    </div>
+                </div>
             </li>
         @endforeach
     </ul>

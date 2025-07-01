@@ -63,6 +63,18 @@ input, select, textarea {
 .highlight {
   @apply border-l-4 border-l-green-500;
 }
+.btn-container{
+  @apply flex flex-col sm:flex-row gap-2 mt-4 sm:mt-0 sm:pl-4;
+}
 .btn {
   @apply rounded px-3 py-2 bg-gray-200 hover:bg-blue-500 hover:text-white;
+}
+.cancel-btn {
+  @apply rounded px-3 py-2 bg-gray-200 hover:bg-gray-300;
+}
+.edit-btn {
+  @apply rounded px-3 py-2 bg-blue-200 hover:bg-blue-400;
+}
+.delete-btn {
+  @apply rounded px-3 py-2 bg-red-200 hover:bg-red-400;
 }

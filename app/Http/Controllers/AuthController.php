@@ -36,7 +36,6 @@ class AuthController extends Controller
         Auth::login($user);
 
         return redirect()->route("tasks.index");
-        // ->with("success", "Post updated successfully");
     }
     
     public function login (Request $request) 

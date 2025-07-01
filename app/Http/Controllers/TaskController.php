@@ -33,7 +33,15 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            "title" => "required|string|max:100",
+            "description" => "required|string|min:10",
+            "is_completed" => "required|boolean",
+        ]);
+
+        Auth::user()->tasks()->create($validated);
+
+        return redirect()->route("tasks.index")->with("success", "Task created successfully!");
     }
 
     /**
@@ -41,7 +49,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        return view("tasks.show");
+        //
     }
 
     /**
@@ -49,7 +57,7 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        return view("tasks.edit");
+        return view("tasks.edit", compact("task"));
     }
 
     /**
@@ -57,7 +65,15 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $validated = $request->validate([
+            "title" => "required|string|max:100",
+            "description" => "required|string|min:10",
+            "is_completed" => "required|boolean",
+        ]);
+
+        $task->update($validated);
+
+        return redirect()->route("tasks.index")->with("success", "Task updated successfully!");
     }
 
     /**
@@ -65,6 +81,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+        return redirect()->route("tasks.index")->with("success", "Tasks deleted successfully");
     }
 }
